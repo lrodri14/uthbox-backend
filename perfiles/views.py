@@ -118,7 +118,7 @@ class RelacionesAPIView(APIView):
     def get(self, request):
         try:
             # Recolectar payload
-            relaciones = Relaciones.objects.filter(usuario_siguiendo=request.user)
+            relaciones = Relaciones.objects.filter(usuario_siguiendo=request.user.perfil)
             # Respuesta de API
             return Response({'data': self.serializer(relaciones, many=True).data}, status=status.HTTP_200_OK)
         except:
